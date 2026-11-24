@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101827" />
+    <title>LABLOOP — Physics, made visible</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#"><span class="brand-mark">L</span> LABLOOP</a>
+        <span class="tagline">PHYSICS, MADE VISIBLE</span>
+        <span id="firebase-status" class="status">Firebase not configured</span>
+      </header>
+
+      <main class="layout">
+        <section class="intro">
+          <p class="eyebrow">INTERACTIVE PHYSICS LAB</p>
+          <h1>Understand the<br><span>why</span> behind the motion.</h1>
+          <p class="sub">Explore a physics concept, change the variables, and ask the AI Scientist to explain what happens.</p>
+        </section>
+
+        <section class="workspace">
+          <nav class="tabs" aria-label="Physics simulations">
+            <button class="tab active" data-topic="momentum">Momentum</button>
+            <button class="tab" data-topic="projectile">Projectile motion</button>
+            <button class="tab" data-topic="newton">Newton's second law</button>
+            <button class="tab" data-topic="workEnergy">Work, Energy &amp; Power</button>
+            <button class="tab" data-topic="doppler">Doppler effect</button>
+            <button class="tab" data-topic="electrostatics">Electrostatics</button>
+            <button class="tab" data-topic="circuits">Electric circuits</button>
+            <button class="tab" data-topic="photoelectric">Photoelectric effect</button>
+          </nav>
+
+          <div class="sim-grid">
+            <section class="panel simulation">
+              <div class="panel-heading">
+                <div><p class="eyebrow">SIMULATION</p><h2 id="sim-title">Collision lab (1D Momentum)</h2></div>
+                <span class="live-dot">LIVE</span>
+              </div>
+              <canvas id="sim-canvas" width="760" height="300" aria-label="Physics simulation"></canvas>
+              <div class="sim-toolbar">
+                <button type="button" id="toggle-play-btn" class="secondary">Pause</button>
+                <button type="button" id="reset-sim-btn" class="secondary">Reset (t = 0s)</button>
+                <div id="topic-actions" class="topic-actions"></div>
+                <div id="presets" class="presets" aria-label="Experiment presets"></div>
+              </div>
+              <div class="controls" id="controls"></div>
+              <div class="readouts" id="readouts"></div>
+            </section>
+
+            <section class="panel ai-panel">
+              <div class="panel-heading">
+                <div><p class="eyebrow">FIREBASE AI LOGIC</p><h2>AI Scientist</h2></div>
+                <span class="ai-icon">✳</span>
+              </div>
+              <p class="muted">Ask a question about the simulation. Hybrid inference prefers on-device Gemini Nano in supported Chrome browsers and falls back to the cloud when needed.</p>
+              <label class="sr-only" for="question">Your physics question</label>
+              <textarea id="question" rows="4" placeholder="Why does the heavier object move more slowly after the collision?"></textarea>
+              <button id="download-model-btn" class="secondary">Download on-device model</button>
+              <button id="ask-btn" class="primary">Ask AI Scientist <span>→</span></button>
+              <div class="ai-meta"><span id="inference-status">On-device model not yet prepared</span><span id="download-status"></span></div>
+              <div id="answer" class="answer" aria-live="polite">Your explanation will appear here.</div>
+            </section>
+          </div>
+          <p class="footnote">Learning prototype · CAPS-aligned explanations · Not a substitute for your teacher or textbook.</p>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
